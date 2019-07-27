@@ -1,0 +1,52 @@
+<div class="col-xs-12 self-margin">
+    <div id="gpa_app">
+        <el-card shadow="never">
+            <div slot="header" class="clearfix">
+                <span><i class="ace-icon fa fa-calendar"/> 全部成绩</span>
+            </div>
+            <div>
+                <el-row :gutter="10">
+                    <el-col :span="6"> <el-tag type="success">必修平均分：{{calAvgGrade(records_total.filter((item)=>{return item.attribute === "必修"}))}}</el-tag> </el-col>
+                    <el-col :span="6"> <el-tag type="success">必修平均绩点：{{calAvgPoint(records_total.filter((item)=>{return item.attribute === "必修"}))}}</el-tag> </el-col>
+                    <el-col :span="6"> <el-tag type="danger">全部平均分：{{calAvgGrade(records_total)}}</el-tag> </el-col>
+                    <el-col :span="6"> <el-tag type="danger">全部平均绩点：{{calAvgPoint(records_total)}}</el-tag> </el-col>
+                    <el-col :span="12" v-for="item in records">
+                        <el-card shadow="hover">
+                            <div slot="header" class="clearfix">
+                                <span><i class="ace-icon fa fa-calendar"/>{{item.semester}}</span>
+                            </div>
+                            <div>
+                                <el-col :span="6"> <el-tag type="success">必修平均分：{{calAvgGrade(item.courses.filter((item)=>{return item.attribute === "必修"}))}}</el-tag> </el-col>
+                                <el-col :span="6"> <el-tag type="success">必修平均绩点：{{calAvgPoint(item.courses.filter((item)=>{return item.attribute === "必修"}))}}</el-tag> </el-col>
+                                <el-col :span="6"> <el-tag type="danger">全部平均分：{{calAvgGrade(item.courses)}}</el-tag> </el-col>
+                                <el-col :span="6"> <el-tag type="danger">全部平均绩点：{{calAvgPoint(item.courses)}}</el-tag> </el-col>
+                                <el-col :span="24">
+                                    <el-table
+                                        :data="item.courses"
+                                        style="width: 100%;height: 640px"
+                                        max-height="640"
+                                        border
+                                        stripe
+                                        :sort-method="sortMethod">
+                                        <el-table-column prop="name" label="课程名" sortable/>
+                                        <el-table-column prop="score" label="分数" width="75" align="center" sortable/>
+                                        <el-table-column prop="gpa" label="绩点" width="75" align="center" sortable/>
+                                        <el-table-column prop="credit" label="学分" width="75" align="center" sortable/>
+                                        <el-table-column prop="attribute" label="属性" width="75" align="center" sortable/>
+
+                                    </el-table>
+                                </el-col>
+                            </div>
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </div>
+        </el-card>
+    </div>
+</div>
+<style>
+    .el-row {
+        margin-bottom: 20px;
+    }
+
+</style>

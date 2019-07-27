@@ -1,0 +1,79 @@
+{
+  "manifest_version": 2,
+  "name": "SCUExtension",
+  "version": "0.0.18",
+  "description": "四川大学教务扩展插件",
+  "author": "wuuuudle",
+  "offline_enabled": true,
+  "icons": {
+    "16": "img/logo.png",
+    "48": "img/logo.png",
+    "128": "img/logo.png"
+  },
+  "browser_action": {
+    "default_icon": "img/logo.png",
+    "default_title": "四川大学教务扩展插件",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "http://202.115.47.141/*",
+    "https://202.115.47.141/*",
+    "http://zhjw.scu.edu.cn/*",
+    "https://zhjw.scu.edu.cn/*",
+    "http://cc.scu.edu.cn/*",
+    "https://cc.scu.edu.cn/*",
+    "http://127.0.0.1/*",
+    "storage",
+    "declarativeContent"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://202.115.47.141/login*",
+        "*://zhjw.scu.edu.cn/login*",
+        "*://202.115.47.141/j_spring_security_check",
+        "*://zhjw.scu.edu.cn/j_spring_security_check"
+      ],
+      "js": [
+        "js/LoadOption.js",
+        "js/urp/login.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://202.115.47.141/*",
+        "*://zhjw.scu.edu.cn/*"
+      ],
+      "js": [
+        "js/LoadOption.js",
+        "js/jquery-3.3.1.min.js",
+        "js/urp/index.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://cc.scu.edu.cn/G2S/Showsystem/Index.aspx",
+        "*://cc.scu.edu.cn/G2S/ShowSystem/Index.aspx"
+      ],
+      "js": [
+        "js/LoadOption.js",
+        "js/jquery-3.3.1.min.js",
+        "js/cc/index.js"
+      ]
+    }
+  ],
+  "background": {
+    "scripts": [
+      "js/jquery-3.3.1.min.js",
+      "js/background.js"
+    ]
+  },
+  "web_accessible_resources": [
+    "information.json",
+    "js/*",
+    "img/*"
+  ]
+}

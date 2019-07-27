@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        body {
+            width: 200px;
+        }
+    </style>
+    <link rel="stylesheet" href="js/vue/index.css">
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/LoadOption.js"></script>
+    <script src="js/vue/vue.js"></script>
+    <script src="js/vue/index.js"></script>
+</head>
+<body>
+<div id="app">
+    <el-row>
+        <menu_trees :tree_data="menutrees_data"
+                    :style_data="style_data"
+                    :switch_value="SwitchValue"
+                    @change_status="changeStatus">
+        </menu_trees>
+    </el-row>
+</div>
+<script type="text/javascript" src="popup.js" nonce="1"></script>
+</body>
+</html>
