@@ -4,6 +4,7 @@ function getOption(callback) {
         URPSwitch: true,
         LoginTwoWeekSwitch: false,
         XKYZMSwitch: false,
+        LoginYZMSwitch:false,
         YJPJSwitch: true,
         GradePointSwitch: true,
         CCSwitch: true,
@@ -16,6 +17,7 @@ function getOption(callback) {
             XKYZMSwitch: 'URPSwitch',
             YJPJSwitch: 'URPSwitch',
             GradePointSwitch: 'URPSwitch',
+            LoginYZMSwitch: 'URPSwitch',
             CCSwitch: 'MasterSwitch',
             RepairSwitch: 'CCSwitch',
             injectSwitch: 'CCSwitch'
