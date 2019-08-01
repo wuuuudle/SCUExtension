@@ -49,7 +49,7 @@ var app = new Vue({
                     Switch: 'LoginTwoWeekSwitch',
                     id: 2,
                     disabled: false,
-                },{
+                }, {
                     name: '自动填写登录验证码',
                     Switch: 'LoginYZMSwitch',
                     id: 2,

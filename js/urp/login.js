@@ -2,7 +2,7 @@ getOption((Option) => {
     if (Option.LoginTwoWeekSwitch)
         loginjs();
     if (Option.LoginYZMSwitch)
-        setTimeout(YZM_init, 800);
+        YZM_init();
 });
 
 function loginjs() {
@@ -38,31 +38,38 @@ function imRead(imageSource) {
     canvas.height = 60;
     ctx = canvas.getContext("2d");
     ctx.drawImage(img, 0, 0, 180, 60);
-
-    return tf.browser.fromPixels(ctx.getImageData(0, 0, canvas.width, canvas.height)).asType('float32').div(255).as4D(1, 60, 180, 3);
+    let temp = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    let array = nShapeArray(null, 1, 60, 180, 3);
+    array[0].forEach((value, item1, arr) => {
+        arr[item1].forEach((value, item2, arr) => {
+            arr[item2].forEach((value, item3, arr) => {
+                arr[item3] = temp.data[4 * (item1 * 180 + item2) + item3] / 255.0;
+            })
+        });
+    });
+    return array;
 }
 
-const characters = '0123456789abcdefghijklmnopqrstuvwxyz';
-let model = null;
+let mutex = false;
 
-async function YZM_init() {
-    model = await tf.loadLayersModel(chrome.extension.getURL('model/model.json'));
+function YZM_init() {
     document.getElementById('captchaImg').onload = () => {
         setYZM();
     };
     setYZM();
 }
 
-
 function setYZM() {
-    let captcha = tf.tidy(() => {
-        let data = imRead('captchaImg');
-        let predict = model.predict(data);
-        return predict.reduce((data, item) => {
-            return data + characters[item.as1D().argMax().arraySync()];
-        }, '');
-    });
-    $('#input_checkcode')[0].value = captcha;
+    if (mutex)
+        return;
+    mutex = true;
+    chrome.runtime.sendMessage(
+        {ImageData: imRead('captchaImg')},
+        function (response) {
+            $('#input_checkcode')[0].value = response;
+            mutex = false;
+        }
+    );
 }
 
 
