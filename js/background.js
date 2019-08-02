@@ -1,11 +1,12 @@
 let model = null;
 const characters = '0123456789abcdefghijklmnopqrstuvwxyz';
 
-async function load_model() {
+async function load_model(isInit) {
     model = await tf.loadLayersModel(chrome.extension.getURL('model/model.json'));
-    tf.tidy(() => {
-        model.predict(tf.tensor4d(nShapeArray(1, 1, 60, 180, 3)));
-    });
+    if (isInit)
+        tf.tidy(() => {
+            model.predict(tf.tensor4d(nShapeArray(1, 1, 60, 180, 3)));
+        });
 }
 
 function recaptcha(ImageData) {
@@ -21,7 +22,7 @@ function recaptcha(ImageData) {
 //初次加载，如果已勾选。将model载入内存
 getOption((Option) => {
     if (Option.LoginYZMSwitch) {
-        load_model().then();
+        load_model(true).then();
     }
 });
 
@@ -31,7 +32,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
         if (Option.LoginYZMSwitch) {
             if (request.ImageData) {
                 if (model == null) {
-                    load_model().then(() => {
+                    load_model(true).then(() => {
                         sendResponse(recaptcha(request.ImageData))
                     });
                 } else {

@@ -17,11 +17,15 @@
 >课程中心
 >> 修复chrome浏览器下姓名及退出不能点击的bug
 
-大家有什么脑洞可以尽量提issue。
+大家有什么脑洞可以请提issue。
 
 本项目已发布在chrome网上应用商店，搜索[**SCUExtension**](https://chrome.google.com/webstore/detail/scuextension/ljmkgohcdjeafplbnncbpekoomklkmen)即可。
 
 ## 更新日志
+### 0.0.21
+简化验证码识别网络，参数个数减少68.8%，模型大小由9.8M减小至3M，loss下降两个数量级。
+
+优化模型加载逻辑。
 ### 0.0.20
 验证码识别移入background.js与页面js分离，避免阻塞页面。
 
