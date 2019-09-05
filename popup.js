@@ -50,6 +50,11 @@ var app = new Vue({
                     id: 2,
                     disabled: false,
                 }, {
+                    name: '校历显示优化',
+                    Switch: 'CalendarSwitch',
+                    id: 2,
+                    disabled: false,
+                }, {
                     name: '自动填写登录验证码',
                     Switch: 'LoginYZMSwitch',
                     id: 2,

@@ -1,0 +1,24 @@
+<a id="calendarList" href="#">
+    <el-dropdown @command="handleCommand">
+      <div>
+            <i class="ace-icon fa fa-calendar"></i> 学校校历
+      </div>
+        <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item v-for="(item,index) in list" :key="index" :command="item.url">{{item.text}}</el-dropdown-item>
+        </el-dropdown-menu>
+    </el-dropdown>
+</a>
+
+
+<style>
+    .el-dropdown {
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 13px;
+    }
+
+    .el-dropdown > div > i {
+        font-size: 16px;
+    }
+
+</style>

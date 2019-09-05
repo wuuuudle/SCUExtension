@@ -9,6 +9,8 @@
 >> 
 >> 自动填写登录验证码
 >>
+>> 校历显示优化
+>>
 >> 一键评教
 >>
 >> ~~选课验证码过滤(开发中)~~
@@ -17,11 +19,18 @@
 >课程中心
 >> 修复chrome浏览器下姓名及退出不能点击的bug
 
-大家有什么脑洞可以请提issue。
+大家有什么脑洞请提issue。
 
 本项目已发布在chrome网上应用商店，搜索[**SCUExtension**](https://chrome.google.com/webstore/detail/scuextension/ljmkgohcdjeafplbnncbpekoomklkmen)即可。
 
 ## 更新日志
+### 0.0.22
+登录页面插件加载逻辑更改。
+
+校历显示优化
+
+![](asset/1.png)
+![](asset/2.png)
 ### 0.0.21
 简化验证码识别网络，参数个数减少68.8%，模型大小由9.8M减小至3M，loss下降两个数量级。
 

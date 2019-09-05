@@ -1,14 +1,18 @@
 getOption((Option) => {
+    if (Option.URPSwitch)
+        loadingSuccess();
     if (Option.LoginTwoWeekSwitch)
         loginjs();
     if (Option.LoginYZMSwitch)
         YZM_init();
 });
 
-function loginjs() {
+function loadingSuccess() {
     let Footer = document.querySelector('#formFooter');
     Footer.innerHTML += '<br><s style="color: #56baed; font-size:0.8em">SCUExtension加载成功</s>';
+}
 
+function loginjs() {
 
     let twoweek = document.createElement("input");
     twoweek.setAttribute('name', '_spring_security_remember_me');

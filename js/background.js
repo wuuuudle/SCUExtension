@@ -26,7 +26,6 @@ getOption((Option) => {
     }
 });
 
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     getOption((Option) => {
         if (Option.LoginYZMSwitch) {
@@ -39,6 +38,23 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
                     sendResponse(recaptcha(request.ImageData));
                 }
             }
+        }
+        if (request.getCalendarList) {
+            $.get('http://jwc.scu.edu.cn/article/206/206_1.htm', (response) => {
+                sendResponse($.map($(response).find('ul li div h5 a'), (e) => {
+                    let dom = $(e);
+                    return {text: dom.text(), url: dom.attr('href')}
+                }));
+            });
+        }
+        if (request.calendarURL) {
+            $.get(request.calendarURL, (response) => {
+                // sendResponse($.map($(response).find('table'), (e) => {
+                //     console.log({a: e});
+                //     return e.innerHTML;
+                // }));
+                sendResponse(response);
+            });
         }
     });
     return true;
@@ -57,7 +73,6 @@ chrome.runtime.onInstalled.addListener((details) => {
             });
         });
     }
-
 });
 
 

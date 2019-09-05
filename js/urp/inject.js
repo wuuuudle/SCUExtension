@@ -1,20 +1,13 @@
-var Version = null;
+let Version = null;
 window.addEventListener("message", function (event) {
     if (event.data.showDetails) {
         Version = event.data.showDetails.Version;
         openExtensionDetails(event.data.showDetails.URL);
-    }
-    if (event.data.YJPJ) {
+    } else if (event.data.YJPJ) {
         YJPJ_search();
     }
 }, false);
 
-function sleep(delay) {
-    var start = (new Date()).getTime();
-    while ((new Date()).getTime() - start < delay) {
-        continue;
-    }
-}
 
 function getPostDate(text) {
     const form = $(text).find("form")[1];
@@ -123,7 +116,7 @@ function YJPJ_search() {
 }
 
 function openExtensionDetails(url) {
-    var modal = addslidersModel("extension_details_modal", "60%");
+    let modal = addslidersModel("extension_details_modal", "60%");
     modal.modal({
         remote: url
     }).on('hide.bs.modal', function () {
