@@ -24,6 +24,10 @@
 本项目已发布在chrome网上应用商店，搜索[**SCUExtension**](https://chrome.google.com/webstore/detail/scuextension/ljmkgohcdjeafplbnncbpekoomklkmen)即可。
 
 ## 更新日志
+
+### 0.0.23
+优化验证码识别网络，使用5\*5的空洞卷积核和1\*1的卷积核，代替原网络中的两个3\*3的卷积核，参数减少29.7%。模型大小由3M减小至2.1M。
+![](asset/cnn_dilation.png)
 ### 0.0.22
 登录页面插件加载逻辑更改。
 
