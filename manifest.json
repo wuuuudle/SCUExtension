@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCUExtension",
-  "version": "0.0.23",
+  "version": "0.0.24",
   "description": "四川大学教务扩展插件",
   "author": "wuuuudle",
   "offline_enabled": true,
@@ -51,8 +51,9 @@
       ],
       "js": [
         "js/LoadOption.js",
+        "js/urp/index.js",
         "js/jquery-3.3.1.min.js",
-        "js/urp/index.js"
+        "js/publicCode.js"
       ]
     },
     {

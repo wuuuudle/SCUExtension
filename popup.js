@@ -60,10 +60,10 @@ var app = new Vue({
                     id: 2,
                     disabled: false,
                 }, {
-                    name: '选课验证码过滤',
+                    name: '自动填写选课验证码',
                     Switch: 'XKYZMSwitch',
                     id: 2,
-                    disabled: true,
+                    disabled: false,
                 }, {
                     name: '绩点计算增强',
                     Switch: 'GradePointSwitch',

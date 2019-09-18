@@ -84,6 +84,38 @@ function injectVue() {
     injectCustomJs('js/vue/index.js');
 }
 
+function XKYZM() {
+    let yzm_area = $('#yzm_area');
+    if (yzm_area.css('display') !== 'none') {
+        let img = yzm_area.children('img')[0];
+        let input = yzm_area.children('input');
+
+        let mutex = false;
+
+        function YZM_init() {
+            img.onload = () => {
+                setYZM();
+            };
+            setYZM();
+        }
+
+        function setYZM() {
+            if (mutex)
+                return;
+            mutex = true;
+            chrome.runtime.sendMessage(
+                {ImageData: imRead(img)},
+                function (response) {
+                    input.val(response);
+                    mutex = false;
+                }
+            );
+        }
+
+        YZM_init();
+    }
+}
+
 function indexjs() {
     if (window.location.pathname.startsWith('/login')) return;//如果是登录界面则不进行注入
     getOption((Option) => {
@@ -94,6 +126,6 @@ function indexjs() {
         if (Option.CalendarSwitch) showCalendar();
         if (Option.YJPJSwitch && window.location.pathname.startsWith('/student/teachingEvaluation/evaluation/index')) addYJPJ();//添加一键评教按钮
         if ((window.location.pathname === '/' || window.location.pathname.startsWith('/index.jsp')) && Option.GradePointSwitch) addShowGPA(); //添加绩点计算
-        //if (Option.XKYZMSwitch && window.location.pathname.startsWith('/student/courseSelect/courseSelect/index')) removeYZM();//过滤选课验证码
+        if (Option.XKYZMSwitch && window.location.pathname.startsWith('/student/courseSelect/courseSelect/index')) XKYZM();//自动填写选课验证码
     });
 }

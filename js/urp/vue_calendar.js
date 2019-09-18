@@ -14,11 +14,9 @@ setTimeout(() => {
                     s.innerHTML = event.data.calendarDom;
 
                     while (s.getElementsByTagName('script').length) {
-                        console.log(s.getElementsByTagName('script'));
                         let child = s.getElementsByTagName('script')[0];
                         child.parentNode.removeChild(child);
                     }
-                    console.log(s.getElementsByTagName('img'));
                     $('#calendar_details_modal .modal-content').html(s);
                     $('#calendar_details_modal .modal-content img').remove();
                 }

@@ -21,14 +21,14 @@ function recaptcha(ImageData) {
 
 //初次加载，如果已勾选。将model载入内存
 getOption((Option) => {
-    if (Option.LoginYZMSwitch) {
+    if (Option.LoginYZMSwitch || Option.XKYZMSwitch) {
         load_model(true).then();
     }
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     getOption((Option) => {
-        if (Option.LoginYZMSwitch) {
+        if (Option.LoginYZMSwitch || Option.XKYZMSwitch) {
             if (request.ImageData) {
                 if (model == null) {
                     load_model(true).then(() => {
