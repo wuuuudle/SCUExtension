@@ -61,20 +61,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 });
 
 
-chrome.runtime.onInstalled.addListener((details) => {
-    if (details.reason === 'update') {
-        $.getJSON(chrome.extension.getURL('information.json'), function (data) {
-            let Version = data.version_name + '-' + data.version;
-            chrome.notifications.create(null, {
-                type: 'basic',
-                iconUrl: 'img/logo.png',
-                title: 'SCUExtension插件已更新',
-                message: '当前版本:' + Version
-            });
-        });
-    }
-});
-
 
 
 

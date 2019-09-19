@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "SCUExtension",
-  "version": "0.0.24",
+  "version": "0.0.25",
   "description": "四川大学教务扩展插件",
   "author": "wuuuudle",
   "offline_enabled": true,
@@ -26,8 +26,7 @@
     "https://cc.scu.edu.cn/*",
     "http://127.0.0.1/*",
     "http://jwc.scu.edu.cn/*",
-    "storage",
-    "notifications"
+    "storage"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "content_scripts": [
